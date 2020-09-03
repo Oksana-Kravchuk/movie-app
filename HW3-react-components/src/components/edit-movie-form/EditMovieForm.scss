@@ -1,0 +1,11 @@
+@import '../../common/styles/colours.scss';
+
+.edit-movie-form {
+   &__movie-id {
+      color: $white;
+   }
+
+   button {
+      padding: 18px 35px;
+   }
+}
