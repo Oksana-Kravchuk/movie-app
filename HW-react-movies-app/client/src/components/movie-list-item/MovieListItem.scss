@@ -1,0 +1,63 @@
+@import '../../common/styles/colours';
+
+.movie-list {
+  &__item {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    position: relative;
+    color: $white;
+
+    &:hover {
+      .movie-list__show-menu-button {
+        display: flex;
+      }
+    }
+  }
+
+  &__image {
+    max-height: 450px;
+    margin-bottom: 15px;
+  }
+
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    opacity: 0.6;
+  }
+
+  &__title {
+    font-size: 16px;
+  }
+
+  &__genre {
+    opacity: 0.6;
+  }
+
+  &__release-date {
+    padding: 3px 10px;
+    border: 1px solid $grey;
+    border-radius: 2px;
+  }
+
+  &__show-menu-button {
+    width: 30px;
+    height: 30px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: $secondary;
+    font-size: 23px;
+    color: $white;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    transform: rotate(90deg);
+
+    &::after {
+      content: '\2026';
+      padding-bottom: 15px;
+    }
+  }
+}

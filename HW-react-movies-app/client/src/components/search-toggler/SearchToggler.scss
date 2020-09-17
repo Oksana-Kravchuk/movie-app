@@ -1,0 +1,29 @@
+@import '../../common/styles/colours.scss';
+
+.search-toggler {
+  display: flex;
+
+  &__icon {
+    font-size: 20px;
+    display: block;
+    color: $primary;
+    transform: rotate(90deg);
+    cursor: pointer;
+    order: 1;
+  }
+
+  &__input {
+    background: $secondary;
+    border-radius: 4px;
+    opacity: 0.8;
+    margin-right: 10px;
+    outline: none;
+    opacity: 0;
+    transition: all 0.5s ease;
+    padding: 10px;
+
+    &--active {
+      opacity: 1;
+    }
+  }
+}

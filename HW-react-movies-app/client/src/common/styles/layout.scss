@@ -1,0 +1,92 @@
+@import './colours.scss';
+
+.container {
+  max-width: 1200px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.main {
+  background: $secondary;
+  color: white;
+  padding-bottom: 1px;
+}
+
+.footer {
+  background: $grey-dark;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60px;
+}
+
+.top-section {
+  position: relative;
+  height: 460px;
+  border-bottom: 8px solid $grey;
+  color: $white;
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    margin-bottom: 25px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    background: url('../../common/images/header-background.jpg') no-repeat;
+    filter: blur(2px) brightness(30%);
+  }
+}
+
+.ant-scrolling-effect {
+  & > #root {
+    filter: blur(2px) brightness(30%);
+  }
+
+  .logo {
+    filter: none;
+  }
+}
+
+.ant-layout-header {
+  background: none;
+}
+
+.popover-menu {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  flex-direction: column;
+  width: 150px;
+  background: $secondary;
+  display: none;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding-bottom: 6px;
+
+  &__item {
+    padding: 3px 15px;
+
+    &:hover {
+      background: $primary;
+    }
+  }
+
+  &--opened {
+    display: flex;
+  }
+
+  span {
+    align-self: flex-end;
+    font-size: 12px;
+    padding: 5px 5px 0 0;
+  }
+}

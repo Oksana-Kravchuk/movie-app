@@ -1,0 +1,35 @@
+@import '../../common/styles/colours';
+
+.filter {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+
+  &__item {
+    display: inline-block;
+    margin-right: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
+    padding: 15px 0;
+
+    &::after {
+      display: none;
+      content: '';
+      width: 100%;
+      height: 2px;
+      bottom: -2px;
+      background: $primary;
+      position: absolute;
+    }
+
+    &:hover {
+      &::after {
+        display: block;
+      }
+    }
+  }
+}

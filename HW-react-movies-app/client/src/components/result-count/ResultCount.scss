@@ -1,0 +1,23 @@
+@import '../../common/styles/colours';
+
+.results-count {
+  display: flex;
+  font-size: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+
+  &__main {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+  &::before {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 3px;
+    margin-bottom: 18px;
+    background-color: $grey;
+    border-bottom: 1px solid $black;
+  }
+}
