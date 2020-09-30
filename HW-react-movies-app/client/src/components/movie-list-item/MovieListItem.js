@@ -1,32 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { toggleMoviePopover } from '../../actions';
+import MoviePopover from '../movie-popover';
 import './MovieListItem.scss';
-import { CloseOutlined } from '@ant-design/icons';
-import Popover from '../popover';
 
-const MovieListItem = ({ movie, showEditMovieModal, showDeleteMovieModal }) => {
-  const { poster_path: image, title, genres, release_date: date } = movie;
-  const [isPopoverOpened, setIsPopoverOpened] = useState(false);
-
-  const content = (
-    <>
-      <span onClick={() => setIsPopoverOpened(false)}>
-        <CloseOutlined />
-      </span>
-      <p
-        onClick={() => showEditMovieModal(movie)}
-        className="popover-menu__item"
-      >
-        Edit
-      </p>
-      <p
-        onClick={() => showDeleteMovieModal(movie)}
-        className="popover-menu__item"
-      >
-        Delete
-      </p>
-    </>
+const MovieListItem = ({ movie }) => {
+  const dispatch = useDispatch();
+  const { activeMovieId } = useSelector(
+    (state) => ({
+      activeMovieId: state.movie.activeMovieId,
+    }),
+    shallowEqual,
   );
+  const { poster_path: image, title, genres, release_date: date } = movie;
 
   return (
     <div className="movie-list__item">
@@ -38,19 +26,14 @@ const MovieListItem = ({ movie, showEditMovieModal, showDeleteMovieModal }) => {
       <div className="movie-list__genre">{genres.join(', ')}</div>
       <div
         tabIndex="0"
-        onBlur={() => setIsPopoverOpened(false)}
-        onClick={(e) => e.preventDefault()}
+        onClick={(ev) => ev.preventDefault()}
+        onBlur={() => dispatch(toggleMoviePopover())}
       >
         <div
           className="movie-list__show-menu-button"
-          onClick={() => setIsPopoverOpened(true)}
+          onClick={() => dispatch(toggleMoviePopover(movie.id))}
         />
-        <Popover
-          content={content}
-          className={`popover-menu ${
-            isPopoverOpened ? 'popover-menu--opened' : ''
-          }`}
-        />
+        {activeMovieId === movie.id ? <MoviePopover movie={movie} /> : ''}
       </div>
     </div>
   );
@@ -58,6 +41,7 @@ const MovieListItem = ({ movie, showEditMovieModal, showDeleteMovieModal }) => {
 
 MovieListItem.propTypes = {
   movie: PropTypes.shape({
+    id: PropTypes.number,
     image: PropTypes.string,
     title: PropTypes.string,
     date: PropTypes.number,
@@ -65,8 +49,6 @@ MovieListItem.propTypes = {
     genres: PropTypes.arrayOf(PropTypes.string),
     release_date: PropTypes.string,
   }),
-  showEditMovieModal: PropTypes.func.isRequired,
-  showDeleteMovieModal: PropTypes.func.isRequired,
 };
 
 export default MovieListItem;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import ErrorIndicator from '../../components/error-indicator';
 
 export default class ErrorBoundary extends Component {

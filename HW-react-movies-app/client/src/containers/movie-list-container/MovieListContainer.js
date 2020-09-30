@@ -1,69 +1,54 @@
-import React, { useCallback, useState } from 'react';
-import { Spin, Modal } from 'antd';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { Spin } from 'antd';
+
+import ErrorIndicator from '../../components/error-indicator';
 import MovieList from '../../components/movie-list';
-import ResultCount from '../../components/result-count';
-import EditMovieForm from '../../components/edit-movie-form';
-import DeleteMovieDialog from '../../components/delete-movie-dialog';
-import { useRequest } from '../../hooks';
+import {
+  fetchMovies,
+  toggleDeleteMovieModal,
+  toggleEditMovieModal,
+} from '../../actions';
 
 const MovieListContainer = () => {
-  const [editModalVisibility, setEditModalVisibility] = useState(false);
-  const [deleteModalVisibility, setDeleteModalVisibility] = useState(false);
-  const [movieForDeleting, setMovieForDeleting] = useState({});
-  const [movieForEditing, setMovieForEditing] = useState({});
+  const dispatch = useDispatch();
+  const {
+    movies,
+    loading,
+    error,
+    isDeleteMovieModalVisible,
+    isEditMovieModalVisible,
+  } = useSelector(
+    (state) => ({
+      movies: state.movieList.visibleMovies,
+      loading: state.movieList.loading,
+      error: state.movieList.error,
+      isDeleteMovieModalVisible: state.movie.isDeleteMovieModalVisible,
+      isEditMovieModalVisible: state.movie.isEditMovieModalVisible,
+    }),
+    shallowEqual,
+  );
 
-  const getRequest = () => {
-    return fetch('/api/movies').then((res) => res.json());
-  };
+  useEffect(() => {
+    dispatch(fetchMovies());
+  }, []);
 
-  const useMoviesData = () => {
-    const request = useCallback(() => getRequest(), []);
-    return useRequest(request);
-  };
-
-  const [movies = [], dataLoading = true] = useMoviesData();
-
-  const showEditMovieModal = (movie) => {
-    setEditModalVisibility(true);
-    setMovieForEditing(movie);
-  };
-
-  const showDeleteMovieModal = (movie) => {
-    setDeleteModalVisibility(true);
-    setMovieForDeleting(movie);
-  };
-
-  if (dataLoading) {
+  if (loading) {
     return <Spin />;
   }
 
+  if (error) {
+    return <ErrorIndicator />;
+  }
+
   return (
-    <>
-      <ResultCount amount={movies.totalAmount} />
-      <MovieList
-        movies={movies.data}
-        showEditMovieModal={showEditMovieModal}
-        showDeleteMovieModal={showDeleteMovieModal}
-      />
-      <Modal
-        visible={editModalVisibility}
-        onCancel={() => setEditModalVisibility(false)}
-        footer={null}
-        title="Edit Movie"
-        wrapClassName="edit-movie-modal"
-      >
-        <EditMovieForm movie={movieForEditing} />
-      </Modal>
-      <Modal
-        visible={deleteModalVisibility}
-        onCancel={() => setDeleteModalVisibility(false)}
-        footer={null}
-        title="Delete Movie"
-        wrapClassName=" delete-movie-modal"
-      >
-        <DeleteMovieDialog movie={movieForDeleting} />
-      </Modal>
-    </>
+    <MovieList
+      movies={movies}
+      toggleDeleteModalVisibility={() => dispatch(toggleDeleteMovieModal())}
+      isDeleteMovieModalVisible={isDeleteMovieModalVisible}
+      isEditMovieModalVisible={isEditMovieModalVisible}
+      toggleEditModalVisibility={() => dispatch(toggleEditMovieModal())}
+    />
   );
 };
 

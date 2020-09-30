@@ -1,23 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { fetchMovie } from '../../actions';
 import MovieDetail from '../../components/movie-detail';
 
 const MovieDetailContainer = ({ id }) => {
-  const [movieDetail, setMovieDetails] = useState({});
+  const dispatch = useDispatch();
+  const { movieDetail } = useSelector(
+    (state) => ({
+      movieDetail: state.movie.movieDetail,
+    }),
+    shallowEqual,
+  );
 
   useEffect(() => {
-    fetch(`/api/movies/${id}`)
-      .then((data) => data.json())
-      .then((data) => {
-        setMovieDetails(data);
-      });
+    dispatch(fetchMovie(id));
   }, [id]);
 
   return <MovieDetail movie={movieDetail} />;
 };
 
 MovieDetailContainer.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
 };
 
 export default MovieDetailContainer;

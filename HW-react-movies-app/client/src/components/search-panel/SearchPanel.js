@@ -1,5 +1,6 @@
 import React from 'react';
 import { Input, Button } from 'antd';
+
 import './SearchPanel.scss';
 
 const SearchPanel = () => {

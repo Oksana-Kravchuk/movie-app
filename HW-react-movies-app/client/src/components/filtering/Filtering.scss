@@ -26,7 +26,8 @@
       position: absolute;
     }
 
-    &:hover {
+    &:hover,
+    &--active {
       &::after {
         display: block;
       }

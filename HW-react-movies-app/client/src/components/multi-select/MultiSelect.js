@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 const { Option } = Select;
 
-const MultiSelect = ({ defaultValue, placeholder }) => {
-  const values = ['Crime', 'Documentary', 'Horror', 'Comedy'];
+const MultiSelect = ({ onBlur, placeholder, defaultValue, onChange }) => {
+  const values = ['Crime', 'Documentary', 'Horror', 'Comedy', ...defaultValue];
 
   return (
     <>
@@ -13,7 +13,9 @@ const MultiSelect = ({ defaultValue, placeholder }) => {
         mode="multiple"
         dropdownClassName="multiple-select-dropdown"
         defaultValue={defaultValue}
+        onChange={onChange}
         placeholder={placeholder}
+        onBlur={onBlur}
         showArrow
       >
         {values.map((item) => (
@@ -27,6 +29,8 @@ const MultiSelect = ({ defaultValue, placeholder }) => {
 MultiSelect.propTypes = {
   defaultValue: PropTypes.arrayOf(PropTypes.string),
   placeholder: PropTypes.string,
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 
 export default MultiSelect;

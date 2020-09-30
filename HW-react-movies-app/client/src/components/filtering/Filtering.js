@@ -1,24 +1,34 @@
 import React from 'react';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+
+import { filterMovies } from '../../actions';
 import './Filtering.scss';
 
 const Filtering = () => {
+  const dispatch = useDispatch();
+  const { apliedFilter } = useSelector(
+    (state) => ({
+      apliedFilter: state.movieList.apliedFilter,
+    }),
+    shallowEqual,
+  );
+  const filterItems = ['All', 'Comedy', 'Action', 'Drama', 'Fantasy'];
+
   return (
     <ul className="filter">
-      <li key="all" className="filter__item">
-        All
-      </li>
-      <li key="documentary" className="filter__item">
-        Documentary
-      </li>
-      <li key="comedy" className="filter__item">
-        Comedy
-      </li>
-      <li key="horror" className="filter__item">
-        Horror
-      </li>
-      <li key="crime" className="filter__item">
-        Crime
-      </li>
+      {filterItems.map((item) => {
+        const classModifier =
+          item === (apliedFilter || 'All') ? 'filter__item--active' : '';
+        return (
+          <li
+            key={item}
+            className={`filter__item ${classModifier}`}
+            onClick={() => dispatch(filterMovies(item))}
+          >
+            {item}
+          </li>
+        );
+      })}
     </ul>
   );
 };

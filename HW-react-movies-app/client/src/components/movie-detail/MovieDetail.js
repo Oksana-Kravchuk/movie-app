@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Row } from 'antd';
+
 import './MovieDetail.scss';
 
 const MovieDetail = ({ movie }) => {

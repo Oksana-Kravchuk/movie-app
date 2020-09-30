@@ -1,42 +1,112 @@
 import React from 'react';
-import { Form, Input, Button, DatePicker, Row } from 'antd';
-import MultiSelect from '../multi-select';
+import { useDispatch } from 'react-redux';
+import { DatePicker } from 'antd';
+import { Form, Formik } from 'formik';
 
-import './AddMovieForm.scss';
+import MultiSelect from '../multi-select';
+import { addMovie } from '../../actions';
+import FormField from '../form-field';
+import MovieFormValidation from '../../utils/form-validation';
 
 const AddMovieForm = () => {
+  const dispatch = useDispatch();
+
   return (
-    <Form preserve={false} layout="vertical" className="add-movie-form">
-      <Form.Item label="Title">
-        <Input placeholder="Movie title here" />
-      </Form.Item>
-      <Form.Item label="Release date">
-        <DatePicker placeholder="Select Date" />
-      </Form.Item>
-      <Form.Item label="Movie url">
-        <Input placeholder="Movie URL here" />
-      </Form.Item>
-      <Form.Item label="Genre">
-        <MultiSelect
-          placeholder="Select Genre"
-          className="add-movie-form__select"
-        />
-      </Form.Item>
-      <Form.Item label="Overview">
-        <Input placeholder="Overview here" />
-      </Form.Item>
-      <Form.Item label="RunTime">
-        <Input placeholder="RunTime here" />
-      </Form.Item>
-      <Row justify="end">
-        <Button htmlType="reset" className="reset-btn">
-          Reset
-        </Button>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Row>
-    </Form>
+    <Formik
+      initialValues={{
+        title: '',
+        release_date: '',
+        poster_path: '',
+        overview: '',
+        genres: [],
+        runtime: '',
+      }}
+      validationSchema={MovieFormValidation}
+      onSubmit={(values, actions) => {
+        dispatch(addMovie(values));
+        actions.resetForm();
+      }}
+    >
+      {({
+        values,
+        resetForm,
+        setFieldValue,
+        errors,
+        touched,
+        setFieldTouched,
+      }) => (
+        <Form className="form">
+          <FormField
+            name="title"
+            type="text"
+            label="First Tile"
+            placeholder="Title"
+          />
+          <div className="form__row">
+            {errors.release_date && touched.release_date ? (
+              <div className="form__error">{errors.release_date}</div>
+            ) : null}
+            <label className="form__label">
+              Release date
+              <DatePicker
+                defaultValue={values.release_date}
+                name="release_date"
+                placeholder="Select date"
+                onBlur={() => setFieldTouched('release_date', true)}
+                onChange={(_, dateString) =>
+                  setFieldValue('release_date', dateString)
+                }
+              />
+            </label>
+          </div>
+          <FormField
+            name="poster_path"
+            type="text"
+            label="Movie url"
+            placeholder="Movie url here"
+          />
+          <div className="form__row">
+            {errors.genres && touched.genres ? (
+              <div className="form__error">{errors.genres}</div>
+            ) : null}
+            <label className="form__label">
+              Genre
+              <MultiSelect
+                defaultValue={values.genres}
+                name="genres"
+                placeholder="Select genre"
+                onBlur={() => setFieldTouched('genres', true)}
+                onChange={(option) => setFieldValue('genres', option)}
+              />
+            </label>
+          </div>
+          <FormField
+            name="overview"
+            type="text"
+            label="Overview"
+            placeholder="Overview here"
+          />
+          <FormField
+            name="runtime"
+            type="number"
+            label="RunTime"
+            placeholder="RunTime here"
+          />
+          <div className="form__buttons">
+            <button
+              onClick={resetForm}
+              className="form__button form__button--reset"
+              type="button"
+            >
+              Reset
+            </button>
+            <button type="submit" className="form__button">
+              Submit
+            </button>
+          </div>
+        </Form>
+      )}
+    </Formik>
   );
 };
 

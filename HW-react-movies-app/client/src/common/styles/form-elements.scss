@@ -1,25 +1,101 @@
-.ant-btn {
-  text-transform: uppercase;
-}
+@import './colours.scss';
 
-.ant-select-selector {
-  .ant-checkbox,
-  .ant-select-selection-item-remove {
-    display: none;
+.form {
+  &__row {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+    color: $primary;
+  }
+
+  &__error {
+    color: $primary;
+    font-size: 11px;
+    padding-top: 4px;
+
+    & ~ .form__label {
+      .form__input,
+      .ant-picker,
+      .ant-select-selector {
+        border: 1px solid $primary;
+      }
+    }
+  }
+
+  &__input {
+    color: $white;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    background: $grey-dark;
+    padding: 8px 0 8px 15px;
+    margin-top: 8px;
+
+    &::placeholder {
+      color: $white;
+      opacity: 0.3;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__button {
+    padding: 5px 15px;
+    margin-top: 40px;
+    border-radius: 3px;
+    background: $primary;
+    color: $white;
+
+    &--reset {
+      background: $secondary;
+      margin-right: 15px;
+      border: 1px solid $primary;
+      color: $primary;
+    }
+  }
+
+  .ant-picker {
+    background: $grey-dark;
+    border: none;
+    margin-top: 8px;
+    padding: 8px 0 8px 15px;
+
+    input {
+      color: $white;
+    }
+  }
+
+  .ant-picker-suffix {
+    color: $primary;
+    margin-right: 10px;
   }
 }
 
-.ant-select-show-search.ant-select-multiple .ant-select-selector {
-  cursor: pointer;
+.add-movie-button {
+  background-color: $grey;
+  opacity: 0.7;
+  color: $primary;
+  text-transform: uppercase;
+  font-size: 18px;
+  height: 100%;
+  border: none;
 }
 
 .ant-select-multiple {
   .ant-select-selector {
     background-color: $grey-dark;
-    height: 40px;
-    letter-spacing: 1.4px;
+    height: 38px;
     color: $white;
     border: none;
+    cursor: pointer;
   }
 
   .ant-select-selection-item {
@@ -80,58 +156,28 @@
   }
 }
 
-.ant-picker input {
-  color: $white;
-  height: 40px;
-
-  &::placeholder {
-    color: $white;
-    opacity: 0.4;
-    letter-spacing: 1.4px;
+.ant-select-selector {
+  .ant-checkbox,
+  .ant-select-selection-item-remove {
+    display: none;
   }
 }
 
-.ant-form-item {
-  margin-bottom: 15px;
-}
+.ant-select-arrow {
+  display: block;
+  height: 0;
+  width: 0;
+  top: 55%;
+  border: 5px solid transparent;
+  border-top: 5px solid $primary;
+  transition: all 0.5s ease-out;
+  cursor: pointer;
 
-.ant-input,
-.ant-picker,
-.ant-select-multiple {
-  background-color: $grey-dark;
-  height: 40px;
-  letter-spacing: 1.4px;
-  color: $white;
-  width: 100%;
-  border: none;
-
-  &::placeholder {
-    color: $white;
-    opacity: 0.4;
+  .anticon {
+    display: none;
   }
 }
 
-.ant-form-item-label > label {
-  color: $primary;
-  text-transform: uppercase;
-  font-size: 12px;
-}
-
-.ant-picker-suffix {
-  color: $primary;
-  font-size: 16px;
-}
-
-.ant-select-single .ant-select-selector .ant-select-selection-item {
-  line-height: unset;
-}
-
-.add-movie-button {
-  background-color: $grey;
-  opacity: 0.7;
-  color: $primary;
-  text-transform: uppercase;
-  font-size: 18px;
-  height: 100%;
-  border: none;
+.ant-select-show-search.ant-select-multiple .ant-select-selector {
+  cursor: pointer;
 }

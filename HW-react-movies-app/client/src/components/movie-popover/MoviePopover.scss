@@ -1,0 +1,28 @@
+@import '../../common/styles/colours.scss';
+
+.popover-menu {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  flex-direction: column;
+  width: 150px;
+  background: $secondary;
+  display: flex;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding-bottom: 6px;
+
+  &__item {
+    padding: 3px 15px;
+
+    &:hover {
+      background: $primary;
+    }
+  }
+
+  span {
+    align-self: flex-end;
+    font-size: 12px;
+    padding: 5px 5px 0 0;
+  }
+}

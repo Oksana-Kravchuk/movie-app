@@ -1,21 +1,23 @@
 import React from 'react';
-import { Select } from 'antd';
+import { useDispatch } from 'react-redux';
+
+import { sortMovies } from '../../actions';
 import './Sorting.scss';
 
-const { Option } = Select;
-
 const Sorting = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className="sorting">
       <div className="sorting__title">Sort By</div>
-      <Select
-        defaultValue="Release date"
-        dropdownClassName="sorting__select-dropdown"
+      <select
+        onChange={(ev) => dispatch(sortMovies(ev.target.value))}
+        className="sorting__select"
       >
-        <Option value="Title (A-Z)">Genre</Option>
-        <Option value="Title (Z-A)">Rating</Option>
-        <Option value="Views">Release date</Option>
-      </Select>
+        <option value="Default">Default</option>
+        <option value="Rating">Rating &darr;</option>
+        <option value="Release date">Release date &darr;</option>
+      </select>
     </div>
   );
 };

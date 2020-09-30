@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import SearchToggler from '../components/search-toggler';
 import MovieDetailContainer from '../containers/movie-detail-container';
 import Logo from '../components/logo';

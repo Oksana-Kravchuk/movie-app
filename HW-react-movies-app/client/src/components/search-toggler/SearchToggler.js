@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import './SearchToggler.scss';
 import { SearchOutlined } from '@ant-design/icons';
+
+import './SearchToggler.scss';
 
 const SearchToggler = () => {
   const [inputVisibility, setinputVisibility] = useState(false);

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Logo from '../components/logo';
 import SearchPanel from '../components/search-panel';
 import AddMovieContainer from '../containers/add-movie-container';
