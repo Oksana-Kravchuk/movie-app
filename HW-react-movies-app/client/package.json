@@ -81,7 +81,7 @@
   },
   "lint-staged": {
     "./src/*.{js,jsx}": [
-      "prettier --write src/*",
+      "npx prettier --write src/",
       "eslint",
       "eslint src/*.js --fix-dry-run"
     ]

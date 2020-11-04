@@ -86,12 +86,12 @@ const EditMovieForm = () => {
           <div className="form__buttons">
             <button
               onClick={resetForm}
-              className="form__button form__button--reset"
+              className="form__button button button--secondary"
               type="button"
             >
               Reset
             </button>
-            <button type="submit" className="form__button">
+            <button type="submit" className="button button--primary">
               Submit
             </button>
           </div>

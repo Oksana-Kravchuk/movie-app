@@ -1,0 +1,18 @@
+.button {
+  padding: 8px 20px;
+  cursor: pointer;
+  margin-top: 40px;
+  border-radius: 3px;
+  text-transform: uppercase;
+
+  &--primary {
+    background: $primary;
+    color: $white;
+  }
+
+  &--secondary {
+    background: $secondary;
+    border: 1px solid $primary;
+    color: $primary;
+  }
+}

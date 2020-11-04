@@ -1,0 +1,27 @@
+@import '../../common/styles/colours.scss';
+
+.not-found {
+  background: $secondary;
+  height: 100vh;
+  padding-top: 20px;
+
+  &__image {
+    height: 190px;
+    width: 550px;
+    background: url(../../common/images/error.png) no-repeat;
+    margin: 20px 0;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 150px;
+  }
+
+  &__text {
+    color: $white;
+    font-size: 32px;
+    font-weight: 300;
+  }
+}

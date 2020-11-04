@@ -23,7 +23,7 @@ const MovieList = ({
         onCancel={toggleEditModalVisibility}
         footer={null}
         title="Edit Movie"
-        wrapClassName="edit-movie-modal"
+        className="movie-modal"
       >
         <EditMovieForm />
       </Modal>
@@ -32,7 +32,7 @@ const MovieList = ({
         onCancel={toggleDeleteModalVisibility}
         footer={null}
         title="Delete Movie"
-        wrapClassName=" delete-movie-modal"
+        className="movie-modal"
       >
         <DeleteMovieDialog />
       </Modal>

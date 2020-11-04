@@ -5,7 +5,16 @@ import PropTypes from 'prop-types';
 const { Option } = Select;
 
 const MultiSelect = ({ onBlur, placeholder, defaultValue, onChange }) => {
-  const values = ['Crime', 'Documentary', 'Horror', 'Comedy', ...defaultValue];
+  const values = [
+    'Crime',
+    'Adventure',
+    'Horror',
+    'Comedy',
+    'Drama, Romance',
+    'Fantasy',
+    'Romance',
+    'Drama',
+  ];
 
   return (
     <>

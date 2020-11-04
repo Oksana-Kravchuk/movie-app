@@ -30,7 +30,7 @@ const AddMovieContainer = () => {
         onCancel={() => dispatch(toggleAddMovieModal())}
         footer={null}
         title="Add Movie"
-        wrapClassName="add-movie-modal"
+        className="movie-modal"
       >
         <AddMovieForm />
       </Modal>

@@ -1,16 +1,13 @@
-const apiBase = '/api/movies';
+const getApiBase = (query) => {
+  const apiBase = query
+    ? `api/movies?search=${query}&searchBy=title`
+    : 'api/movies';
 
-const fetchMovie = async (id) => {
-  const res = await fetch(`${apiBase}/${id}`);
-
-  if (!res.ok) {
-    throw new Error(`Could not fetch, received ${res.status}`);
-  }
-  return await res.json();
+  return apiBase;
 };
 
-const fetchAllMovies = async () => {
-  const res = await fetch(apiBase);
+const fetchMovie = async (id) => {
+  const res = await fetch(`${getApiBase()}/${id}`);
 
   if (!res.ok) {
     throw new Error(`Could not fetch, received ${res.status}`);
@@ -19,7 +16,7 @@ const fetchAllMovies = async () => {
 };
 
 const addMovie = async (data) => {
-  const res = await fetch(apiBase, {
+  const res = await fetch(getApiBase(), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -34,7 +31,7 @@ const addMovie = async (data) => {
 };
 
 const updateMovie = async (data) => {
-  const res = await fetch(`${apiBase}`, {
+  const res = await fetch(`${getApiBase()}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -49,7 +46,7 @@ const updateMovie = async (data) => {
 };
 
 const deleteMovie = async (id) => {
-  const res = await fetch(`${apiBase}/${id}`, {
+  const res = await fetch(`${getApiBase()}/${id}`, {
     method: 'DELETE',
   });
 
@@ -58,12 +55,50 @@ const deleteMovie = async (id) => {
   }
 };
 
+const sortBy = async (params, searchQuery) => {
+  const res = await fetch(`${getApiBase(searchQuery)}&${params}`, {
+    method: 'GET',
+  });
+
+  if (!res.ok) {
+    throw new Error(`Could not sort movie, received ${res.status}`);
+  }
+
+  return await res.json();
+};
+
+const filter = async (params, searchQuery) => {
+  const res = await fetch(`${getApiBase(searchQuery)}&${params}`, {
+    method: 'GET',
+  });
+
+  if (!res.ok) {
+    throw new Error(`Could not filter movie, received ${res.status}`);
+  }
+
+  return await res.json();
+};
+
+const search = async (query) => {
+  const res = await fetch(`${getApiBase()}?search=${query}&searchBy=title`, {
+    method: 'GET',
+  });
+
+  if (!res.ok) {
+    throw new Error(`Could not search movie, received ${res.status}`);
+  }
+
+  return await res.json();
+};
+
 const MovieService = {
-  fetchAllMovies,
   fetchMovie,
   addMovie,
   updateMovie,
   deleteMovie,
+  sortBy,
+  filter,
+  search,
 };
 
 export default MovieService;

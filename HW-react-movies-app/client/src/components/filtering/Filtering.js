@@ -1,29 +1,19 @@
 import React from 'react';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import { filterMovies } from '../../actions';
 import './Filtering.scss';
 
-const Filtering = () => {
-  const dispatch = useDispatch();
-  const { apliedFilter } = useSelector(
-    (state) => ({
-      apliedFilter: state.movieList.apliedFilter,
-    }),
-    shallowEqual,
-  );
-  const filterItems = ['All', 'Comedy', 'Action', 'Drama', 'Fantasy'];
-
+const Filtering = ({ items, applyFilter, appliedFilter }) => {
   return (
     <ul className="filter">
-      {filterItems.map((item) => {
+      {items.map((item) => {
         const classModifier =
-          item === (apliedFilter || 'All') ? 'filter__item--active' : '';
+          item === (appliedFilter || 'All') ? 'filter__item--active' : '';
         return (
           <li
             key={item}
             className={`filter__item ${classModifier}`}
-            onClick={() => dispatch(filterMovies(item))}
+            onClick={() => applyFilter(item)}
           >
             {item}
           </li>
@@ -31,6 +21,12 @@ const Filtering = () => {
       })}
     </ul>
   );
+};
+
+Filtering.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.string),
+  applyFilter: PropTypes.func,
+  appliedFilter: PropTypes.string,
 };
 
 export default Filtering;

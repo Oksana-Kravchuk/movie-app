@@ -1,9 +1,7 @@
 import * as Yup from 'yup';
 
 const MovieFormValidation = Yup.object().shape({
-  title: Yup.string()
-    .matches(/^[a-zA-Z0-9_ ]*$/, 'Title is not valid')
-    .required('Title is required'),
+  title: Yup.string().required('Title is required'),
   release_date: Yup.string().required('Release date is required'),
   poster_path: Yup.string()
     .matches(/(www|http:|https:)+[^\s]+[\w]/, 'Path is not valid')

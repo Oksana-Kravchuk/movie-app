@@ -1,27 +1,21 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { Spin } from 'antd';
 
 import ErrorIndicator from '../../components/error-indicator';
 import MovieList from '../../components/movie-list';
-import {
-  fetchMovies,
-  toggleDeleteMovieModal,
-  toggleEditMovieModal,
-} from '../../actions';
+import { toggleDeleteMovieModal, toggleEditMovieModal } from '../../actions';
+import EmptySearchResult from '../../components/empy-search-result';
 
 const MovieListContainer = () => {
   const dispatch = useDispatch();
   const {
     movies,
-    loading,
     error,
     isDeleteMovieModalVisible,
     isEditMovieModalVisible,
   } = useSelector(
     (state) => ({
-      movies: state.movieList.visibleMovies,
-      loading: state.movieList.loading,
+      movies: state.movieList.movies,
       error: state.movieList.error,
       isDeleteMovieModalVisible: state.movie.isDeleteMovieModalVisible,
       isEditMovieModalVisible: state.movie.isEditMovieModalVisible,
@@ -29,12 +23,8 @@ const MovieListContainer = () => {
     shallowEqual,
   );
 
-  useEffect(() => {
-    dispatch(fetchMovies());
-  }, []);
-
-  if (loading) {
-    return <Spin />;
+  if (!movies.length) {
+    return <EmptySearchResult />;
   }
 
   if (error) {

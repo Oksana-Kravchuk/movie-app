@@ -34,6 +34,7 @@ module.exports = {
     'react/button-has-type': 0,
     'no-return-await': 0,
     'react/forbid-prop-types': 0,
-    'no-case-declarations': 0
+    'no-case-declarations': 0,
+    'no-unused-expressions': 0,
   },
 };

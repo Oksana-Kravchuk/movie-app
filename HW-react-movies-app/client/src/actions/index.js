@@ -14,20 +14,6 @@ const moviesError = (error) => {
   };
 };
 
-const filterMovies = (type) => {
-  return {
-    type: 'FILTER_MOVIES',
-    payload: type,
-  };
-};
-
-const sortMovies = (type) => {
-  return {
-    type: 'SORT_MOVIES',
-    payload: type,
-  };
-};
-
 const toggleMoviePopover = (id) => {
   return {
     type: 'TOGGLE_MOVIE_POPOVER',
@@ -69,6 +55,13 @@ const deleteMovieSuccess = (id) => {
   };
 };
 
+const updateInputValue = (value) => {
+  return {
+    type: 'UPDATE_INPUT_VALUE',
+    payload: value,
+  };
+};
+
 const addMovieSuccess = (movie) => {
   return {
     type: 'ADD_MOVIE_SUCCESS',
@@ -83,10 +76,11 @@ const fetchMovieSuccess = (movie) => {
   };
 };
 
-const fetchMovies = () => (dispatch) => {
-  MovieService.fetchAllMovies()
-    .then((data) => dispatch(moviesLoaded(data)))
-    .catch((err) => dispatch(moviesError(err)));
+const setAppliedFilter = (filter) => {
+  return {
+    type: 'SET_APPLIED_FILTER',
+    payload: filter,
+  };
 };
 
 const updateMovie = (movie) => (dispatch) => {
@@ -116,8 +110,25 @@ const fetchMovie = (id) => (dispatch) => {
     .catch((err) => dispatch(moviesError(err)));
 };
 
+const sortMovies = (params, searchQuery) => (dispatch) => {
+  MovieService.sortBy(params, searchQuery)
+    .then((data) => dispatch(moviesLoaded(data)))
+    .catch((err) => dispatch(moviesError(err)));
+};
+
+const filterMovies = (query, searchQuery) => (dispatch) => {
+  MovieService.filter(query, searchQuery)
+    .then((data) => dispatch(moviesLoaded(data)))
+    .catch((err) => dispatch(moviesError(err)));
+};
+
+const doSearch = (query) => (dispatch) => {
+  MovieService.search(query)
+    .then((data) => dispatch(moviesLoaded(data)))
+    .catch((err) => dispatch(moviesError(err)));
+};
+
 export {
-  fetchMovies,
   filterMovies,
   sortMovies,
   toggleMoviePopover,
@@ -127,5 +138,9 @@ export {
   addMovie,
   updateMovie,
   fetchMovie,
+  doSearch,
   toggleAddMovieModal,
+  updateInputValue,
+  deleteMovieSuccess,
+  setAppliedFilter,
 };
