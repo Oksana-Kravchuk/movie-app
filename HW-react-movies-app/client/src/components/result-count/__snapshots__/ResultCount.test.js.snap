@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultCount  render correctly ResultCount component 1`] = `
+<div
+  className="results-count"
+>
+  <div
+    className="results-count__main"
+  >
+    10
+  </div>
+  <div>
+    movies found
+  </div>
+</div>
+`;

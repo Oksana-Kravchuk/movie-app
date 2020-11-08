@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddMovieContainer  render correctly SearchPanel component 1`] = `
+<div
+  className="search-panel"
+>
+  <h2
+    className="search-panel__header"
+  >
+    Find your movie
+  </h2>
+  <div
+    className="search-panel__row"
+  >
+    <Input
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="What do you want to watch?"
+      size="large"
+      type="text"
+    />
+    <Button
+      block={false}
+      className="search-panel__button"
+      ghost={false}
+      htmlType="button"
+      loading={false}
+      onClick={[MockFunction]}
+      size="large"
+      type="primary"
+    >
+      Search
+    </Button>
+  </div>
+</div>
+`;

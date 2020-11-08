@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "webpack-dev-server --open --config webpack.config.dev.js",
     "prod": "webpack --config webpack.config.prod.js",
-    "test": "jest",
+    "test": "jest --verbose",
+    "test:watch": "jest --watchAll --verbose",
+    "test:coverage": "jest --verbose --coverage",
     "lint": "eslint ./src"
   },
   "dependencies": {

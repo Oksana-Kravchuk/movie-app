@@ -10,4 +10,10 @@ How to run:
 1. npm i
 2. npm run dev (prod/test) script
 
-P.S custom hook - in hook folder
+How to run tests:
+
+- go to client folder and run:
+
+1. npm run test
+2. npm run test:coverage (for coverage check)
+ 

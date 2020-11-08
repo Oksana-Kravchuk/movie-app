@@ -12,7 +12,7 @@ describe('ResultCount ', () => {
 
   beforeEach(() => {
     const props = {
-     amount: '10'
+     amount: 10
     };
     wrapper = shallow(<ResultCount {...props} />);
   });
