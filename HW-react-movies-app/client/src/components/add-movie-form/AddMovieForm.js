@@ -1,16 +1,12 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { DatePicker } from 'antd';
 import { Form, Formik } from 'formik';
 
 import MultiSelect from '../multi-select';
-import { addMovie } from '../../actions';
 import FormField from '../form-field';
 import MovieFormValidation from '../../utils/form-validation';
 
-const AddMovieForm = () => {
-  const dispatch = useDispatch();
-
+const AddMovieForm = ({submitForm}) => {
   return (
     <Formik
       initialValues={{
@@ -23,7 +19,7 @@ const AddMovieForm = () => {
       }}
       validationSchema={MovieFormValidation}
       onSubmit={(values, actions) => {
-        dispatch(addMovie(values));
+        () => submitForm(values);
         actions.resetForm();
       }}
     >
@@ -37,10 +33,12 @@ const AddMovieForm = () => {
       }) => (
         <Form className="form">
           <FormField
+            id="title"
             name="title"
             type="text"
             label="First Tile"
             placeholder="Title"
+            onChange={(val) => setFieldValue('title', val)}
           />
           <div className="form__row">
             {errors.release_date && touched.release_date ? (

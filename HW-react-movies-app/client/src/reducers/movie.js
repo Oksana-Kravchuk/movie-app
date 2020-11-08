@@ -1,7 +1,6 @@
-const movieModal = (state, action) => {
+const movie = (state, action) => {
   if (!state) {
     return {
-      error: null,
       isMoviePopoverOpened: false,
       isDeleteMovieModalVisible: false,
       isEditMovieModalVisible: false,
@@ -52,4 +51,4 @@ const movieModal = (state, action) => {
   }
 };
 
-export default movieModal;
+export default movie;

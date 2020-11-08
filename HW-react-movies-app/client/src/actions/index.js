@@ -9,7 +9,7 @@ const moviesLoaded = (newMovies) => {
 
 const moviesError = (error) => {
   return {
-    type: 'FETCH_MOVIES_FAILURE',
+    type: 'SET_MOVIES_ERROR',
     payload: error,
   };
 };

@@ -3,17 +3,20 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { Modal, Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
-import { toggleAddMovieModal } from '../../actions';
+import { toggleAddMovieModal, addMovie } from '../../actions';
 import AddMovieForm from '../../components/add-movie-form';
 
 const AddMovieContainer = () => {
   const { isAddMovieModalVisible } = useSelector(
-    (state) => ({
+    state => ({
       isAddMovieModalVisible: state.movie.isAddMovieModalVisible,
     }),
     shallowEqual,
   );
   const dispatch = useDispatch();
+  const submitAddMovieForm = (values) => {
+    dispatch(addMovie(values));
+  };
 
   return (
     <>
@@ -32,7 +35,7 @@ const AddMovieContainer = () => {
         title="Add Movie"
         className="movie-modal"
       >
-        <AddMovieForm />
+        <AddMovieForm submitForm={submitAddMovieForm}/>
       </Modal>
     </>
   );

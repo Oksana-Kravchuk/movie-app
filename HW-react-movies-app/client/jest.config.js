@@ -5,4 +5,7 @@ module.exports = {
     '<rootDir>/src/**/__tests__/**/*.{js,jsx}',
     '<rootDir>/src/**/*.{spec,test}.{js,jsx}',
   ],
+  moduleNameMapper: {
+    "\\.(scss|less|css)$": "identity-obj-proxy"
+  }
 };

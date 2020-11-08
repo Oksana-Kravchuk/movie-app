@@ -15,7 +15,7 @@ const movieList = (state, action) => {
         movies: action.payload.data,
       };
 
-    case 'FETCH_MOVIES_FAILURE':
+    case 'SET_MOVIES_ERROR':
       return {
         ...state,
         error: action.payload,

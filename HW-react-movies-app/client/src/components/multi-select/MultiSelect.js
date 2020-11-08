@@ -2,8 +2,6 @@ import React from 'react';
 import { Select } from 'antd';
 import PropTypes from 'prop-types';
 
-const { Option } = Select;
-
 const MultiSelect = ({ onBlur, placeholder, defaultValue, onChange }) => {
   const values = [
     'Crime',
@@ -28,7 +26,7 @@ const MultiSelect = ({ onBlur, placeholder, defaultValue, onChange }) => {
         showArrow
       >
         {values.map((item) => (
-          <Option key={item}>{item}</Option>
+          <Select.Option key={item}>{item}</Select.Option>
         ))}
       </Select>
     </>
