@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Content from './Content';
 import Footer from './Footer';
 
+// PATTERN Layout component
+
 const Layout = ({ children }) => {
   return (
     <>

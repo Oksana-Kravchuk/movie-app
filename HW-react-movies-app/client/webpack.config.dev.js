@@ -14,10 +14,8 @@ module.exports = merge(common, {
         target: 'http://localhost:4000',
         pathRewrite: { '^/api': '' },
         secure: false,
-        // changeOrigin: true
       },
     },
-    contentBase: path.join(__dirname, 'dist'),
     compress: true,
     hot: true,
   },

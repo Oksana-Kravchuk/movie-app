@@ -8,7 +8,7 @@ const MovieDetail = ({ movie }) => {
   const {
     poster_path: image,
     title,
-    genres = [],
+    genre = [],
     release_date: date = '',
     vote_average: vote,
     runtime,
@@ -23,7 +23,7 @@ const MovieDetail = ({ movie }) => {
           <div className="movie-detail__title">{title}</div>
           <div className="movie-detail__release-vote">{vote}</div>
         </Row>
-        <div className="movie-detail__genre">{genres.join(', ')}</div>
+        <div className="movie-detail__genre">{genre.join(', ')}</div>
         <div className="movie-detail__row">
           <div className="movie-detail__release-date">{date.slice(0, 4)}</div>
           <div className="movie-detail__release-runtime">
@@ -39,12 +39,9 @@ const MovieDetail = ({ movie }) => {
 
 MovieDetail.propTypes = {
   movie: PropTypes.shape({
-    image: PropTypes.string,
     title: PropTypes.string,
-    genre: PropTypes.string,
-    date: PropTypes.number,
     poster_path: PropTypes.string,
-    genres: PropTypes.arrayOf(PropTypes.string),
+    genre: PropTypes.arrayOf(PropTypes.string),
     release_date: PropTypes.string,
     vote_average: PropTypes.number,
     runtime: PropTypes.number,

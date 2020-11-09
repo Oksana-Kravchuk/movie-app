@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import { fetchMovie } from '../../actions';
 import MovieDetail from '../../components/movie-detail';
 
+// PATTERN Container component
+
 const MovieDetailContainer = ({ id }) => {
   const dispatch = useDispatch();
   const { movieDetail } = useSelector(
@@ -22,7 +24,7 @@ const MovieDetailContainer = ({ id }) => {
 };
 
 MovieDetailContainer.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.string,
 };
 
 export default MovieDetailContainer;

@@ -6,7 +6,7 @@ import MultiSelect from '../multi-select';
 import FormField from '../form-field';
 import MovieFormValidation from '../../utils/form-validation';
 
-const AddMovieForm = ({submitForm}) => {
+const AddMovieForm = ({ submitForm }) => {
   return (
     <Formik
       initialValues={{
@@ -33,12 +33,10 @@ const AddMovieForm = ({submitForm}) => {
       }) => (
         <Form className="form">
           <FormField
-            id="title"
             name="title"
             type="text"
             label="First Tile"
             placeholder="Title"
-            onChange={(val) => setFieldValue('title', val)}
           />
           <div className="form__row">
             {errors.release_date && touched.release_date ? (

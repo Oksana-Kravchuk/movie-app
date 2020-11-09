@@ -9,4 +9,4 @@ const ScrollToTop = ({ children, location: { pathname } }) => {
   return children;
 };
 
-export default withRouter(ScrollToTop);
+export default withRouter(ScrollToTop); // PATTER Higher-order component

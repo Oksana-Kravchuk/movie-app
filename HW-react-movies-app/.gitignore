@@ -1,5 +1,6 @@
 # Dependency directories
 node_modules/
+coverage
 
 # Optional npm cache directory
 .vscode

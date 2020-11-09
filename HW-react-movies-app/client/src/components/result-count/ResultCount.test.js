@@ -1,6 +1,6 @@
 import React from 'react';
-import Enzyme from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import ResultCount from './ResultCount';
@@ -12,12 +12,12 @@ describe('ResultCount ', () => {
 
   beforeEach(() => {
     const props = {
-     amount: 10
+      amount: 10,
     };
     wrapper = shallow(<ResultCount {...props} />);
   });
 
-  it('render correctly ResultCount component', () => {  
+  it('render correctly ResultCount component', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

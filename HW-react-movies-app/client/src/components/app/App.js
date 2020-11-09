@@ -3,9 +3,7 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import ScrollToTop from '../../containers/scroll';
 import '../../common/styles/app.scss';
-import Layout from '../../layout';
-import HomePageHeader from '../home-page-header';
-import MoviePageHeader from '../movie-page-header';
+import { Layout, HomePageHeader, MoviePageHeader } from '../../layout';
 import NotFound from '../not-found/NotFound';
 
 const App = () => {

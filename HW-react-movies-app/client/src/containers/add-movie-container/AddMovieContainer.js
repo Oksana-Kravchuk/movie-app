@@ -8,7 +8,7 @@ import AddMovieForm from '../../components/add-movie-form';
 
 const AddMovieContainer = () => {
   const { isAddMovieModalVisible } = useSelector(
-    state => ({
+    (state) => ({
       isAddMovieModalVisible: state.movie.isAddMovieModalVisible,
     }),
     shallowEqual,
@@ -35,7 +35,7 @@ const AddMovieContainer = () => {
         title="Add Movie"
         className="movie-modal"
       >
-        <AddMovieForm submitForm={submitAddMovieForm}/>
+        <AddMovieForm submitForm={submitAddMovieForm} />
       </Modal>
     </>
   );

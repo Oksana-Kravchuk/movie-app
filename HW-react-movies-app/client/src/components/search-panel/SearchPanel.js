@@ -4,6 +4,8 @@ import { Input, Button } from 'antd';
 
 import './SearchPanel.scss';
 
+// PATTERN: Stateless Component
+
 const SearchPanel = ({ handleSearch, handleInput }) => {
   return (
     <div className="search-panel">
