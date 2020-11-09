@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button } from 'antd';
-import { shallow } from 'enzyme';
-import Enzyme from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 import SearchPanel from './SearchPanel';

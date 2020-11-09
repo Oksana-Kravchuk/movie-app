@@ -1,6 +1,7 @@
 import React from 'react';
 import { DatePicker } from 'antd';
 import { Form, Formik } from 'formik';
+import PropTypes from 'prop-types';
 
 import MultiSelect from '../multi-select';
 import FormField from '../form-field';
@@ -104,6 +105,10 @@ const AddMovieForm = ({ submitForm }) => {
       )}
     </Formik>
   );
+};
+
+AddMovieForm.propTypes = {
+  submitForm: PropTypes.func,
 };
 
 export default AddMovieForm;

@@ -1,9 +1,8 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import Enzyme from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import Adapter from 'enzyme-adapter-react-16';
 import AddMovieForm from './AddMovieForm';
-import toJson from 'enzyme-to-json';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -17,12 +16,10 @@ describe('AddMovieForm', () => {
     runtime: '',
   };
   let wrapper;
-  let resetFrom;
   let submitForm;
 
   beforeEach(() => {
     wrapper = shallow(<AddMovieForm {...initialValues} />);
-    resetFrom = jest.fn();
     submitForm = jest.fn();
   });
 

@@ -3,6 +3,7 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
+    "jest/globals": true
   },
   extends: ['airbnb', 'prettier', 'prettier/react'],
   parser: 'babel-eslint',
@@ -12,7 +13,7 @@ module.exports = {
     },
     sourceType: 'module',
   },
-  plugins: ['react', 'prettier'],
+  plugins: ['react', 'prettier', 'jest'],
   rules: {
     'import/newline-after-import': 'error',
     semi: 'error',
